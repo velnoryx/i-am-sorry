@@ -94,7 +94,7 @@ export default function FunSection({ onAnswer }: FunSectionProps) {
           }}
           className="text-5xl md:text-6xl select-none mb-6"
         >
-          🤔
+          🥺
         </motion.div>
         
         <h2

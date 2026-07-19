@@ -29,7 +29,7 @@ const stepTransitionVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeInOut' as any,
+      ease: 'easeInOut' as const,
     },
   },
   exit: {
@@ -38,7 +38,7 @@ const stepTransitionVariants = {
     y: -15,
     transition: {
       duration: 0.6,
-      ease: 'easeInOut' as any,
+      ease: 'easeInOut' as const,
     },
   },
 };
@@ -63,7 +63,7 @@ export default function Home() {
     goToStep('questions');
   }, [goToStep]);
 
-  const handleQuestionsComplete = useCallback((answers?: string[]) => {
+  const handleQuestionsComplete = useCallback(() => {
     goToStep('ending');
   }, [goToStep]);
 

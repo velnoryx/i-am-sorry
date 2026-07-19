@@ -140,7 +140,7 @@ export default function Questions({ funAnswer, onComplete }: QuestionsProps) {
     }
   };
 
-  const handleSubmit = async (updatedAnswers: string[], clickEvent: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (updatedAnswers: string[]) => {
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from('responses').insert({
@@ -194,7 +194,7 @@ export default function Questions({ funAnswer, onComplete }: QuestionsProps) {
       window.dispatchEvent(event);
 
       // Save to database then proceed
-      handleSubmit(updatedAnswers, e);
+      handleSubmit(updatedAnswers);
     } else {
       setCurrentIndex((prev) => prev + 1);
     }

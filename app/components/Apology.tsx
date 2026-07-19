@@ -49,7 +49,7 @@ const cardVariants = {
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: 'easeInOut' as any,
+      ease: 'easeInOut' as const,
     },
   },
   exit: (direction: number) => ({
@@ -58,7 +58,7 @@ const cardVariants = {
     scale: 0.96,
     transition: {
       duration: 0.6,
-      ease: 'easeInOut' as any,
+      ease: 'easeInOut' as const,
     },
   }),
 };

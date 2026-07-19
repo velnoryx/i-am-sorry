@@ -66,9 +66,15 @@ function AnimatedBackground({ currentStep }: AnimatedBackgroundProps) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const getZoom = () => {
+      const z = getComputedStyle(document.documentElement).zoom;
+      return z ? parseFloat(z) || 1 : 1;
+    };
+
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const zoom = getZoom();
+      canvas.width = window.innerWidth / zoom;
+      canvas.height = window.innerHeight / zoom;
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);

@@ -32,7 +32,6 @@
 }
 
 html, body {
-  zoom: 90%;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
@@ -379,35 +378,20 @@ input[type='range']::-moz-range-thumb:hover {
 
 @keyframes butterfly-fly {
   0% {
-    transform: translate3d(0, 0, 0) rotate(var(--bf-start-rot)) scale(0.8);
-    opacity: 0;
-  }
-  15% {
+    transform: translate3d(0, 0, 0) rotate(var(--bf-start-rot)) scale(var(--bf-start-scale));
     opacity: 1;
-    transform: translate3d(
-      calc(var(--bf-drift-x) * 0.2 + var(--bf-curve-dir) * 6px),
-      calc(var(--bf-fly-y) * 0.2),
-      0
-    ) rotate(calc(var(--bf-start-rot) + var(--bf-rot-diff) * 0.2)) scale(1.0);
   }
   50% {
-    opacity: 0.85;
+    /* Flutter: small high-frequency wobble */
+    opacity: 0.7;
     transform: translate3d(
-      calc(var(--bf-drift-x) * 0.6 + var(--bf-curve-dir) * 12px),
+      calc(var(--bf-drift-x) * 0.5 + var(--bf-curve-dir) * 8px),
       calc(var(--bf-fly-y) * 0.5),
       0
-    ) rotate(calc(var(--bf-start-rot) + var(--bf-rot-diff) * 0.5)) scale(0.9);
-  }
-  80% {
-    opacity: 0.5;
-    transform: translate3d(
-      calc(var(--bf-drift-x) * 0.85 + var(--bf-curve-dir) * 6px),
-      calc(var(--bf-fly-y) * 0.8),
-      0
-    ) rotate(calc(var(--bf-start-rot) + var(--bf-rot-diff) * 0.8)) scale(0.7);
+    ) rotate(calc(var(--bf-start-rot) + var(--bf-rot-diff) * 0.5 + 5deg)) scale(calc(var(--bf-start-scale) * 0.85));
   }
   100% {
-    transform: translate3d(var(--bf-drift-x), var(--bf-fly-y), 0) rotate(calc(var(--bf-start-rot) + var(--bf-rot-diff))) scale(0.5);
+    transform: translate3d(var(--bf-drift-x), var(--bf-fly-y), 0) rotate(calc(var(--bf-start-rot) + var(--bf-rot-diff))) scale(calc(var(--bf-start-scale) * 0.5));
     opacity: 0;
   }
 }
@@ -416,8 +400,6 @@ input[type='range']::-moz-range-thumb:hover {
   position: fixed;
   pointer-events: none;
   z-index: 99997;
-  perspective: 300px;
-  transform-style: preserve-3d;
   will-change: transform, opacity;
 }
 
@@ -425,6 +407,7 @@ input[type='range']::-moz-range-thumb:hover {
   position: relative;
   width: 100%;
   height: 100%;
+  perspective: 300px;
   transform-style: preserve-3d;
   animation: butterfly-fly var(--bf-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
